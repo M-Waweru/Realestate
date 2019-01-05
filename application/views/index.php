@@ -9,7 +9,7 @@
 	<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<!-- Title -->
-	<title>Dorne - Directory &amp; Listing Template</title>
+	<title>RealEstate</title>
 
 	<!-- Favicon -->
 	<link rel="icon" href="<?php echo base_url() ?>img/core-img/favicon.ico">
@@ -88,9 +88,20 @@
 								<a id="search-btn" href="#"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
 							</div>
 							<!-- Signin btn -->
-							<div class="dorne-signin-btn">
-								<a href="<?php echo base_url('accounts/login') ?>">Sign in  or Register</a>
-							</div>
+							<?php 
+							if ($this->session->userdata('emailadd')!=''){
+								echo "<div class='dorne-signin-btn'>";
+								echo "<a href=''>Account<a>";
+								echo "</div>";
+								echo "<div class='dorne-signin-btn'>";
+								echo "<a href=''>Logout<a>";
+								echo "</div>";
+							} else {
+								echo "<div class='dorne-signin-btn'>";
+								echo "<a href=".base_url('accounts/login').">Sign in or Register</a>";
+								echo "</div>";
+							}
+							?>
 							<!-- Add listings btn -->
 							<div class="dorne-add-listings-btn">
 								<a href="#" class="btn dorne-btn">+ Add Listings</a>

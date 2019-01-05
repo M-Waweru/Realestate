@@ -21,6 +21,7 @@
 						<div>
 							<b>OR</b>
 						</div>
+						<p class="red-text"><?php echo validation_errors(); ?></p>
 						<div class="input-field">
 							<input type="text" name="emailadd" id="emailadd" required>
 							<label for="emailadd">Email address</label>
@@ -30,6 +31,7 @@
 							<label for="pwd">Password</label>
 						</div>
 						<div class="row">
+							<p class="red-text"><?php echo $this->session->flashdata('invalidcred') ?></p>
 							<p>Don't have an account? <a href="<?php echo base_url('accounts/signup') ?>">Click here to sign up</a></p>
 						</div>
 						<div class="row">

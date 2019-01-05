@@ -22,6 +22,9 @@
 						<div>
 							<b>OR</b>
 						</div>
+						<div class="row">
+							<p class="red"><?php echo validation_errors(); ?></p>
+						</div>
 						<div class="input-field">
 							<input type="text" name="fullname" id="fullname" required>
 							<label for="fullname">Full Name</label>
@@ -39,7 +42,8 @@
 							<label for="pwdagain">Confirm password</label>
 						</div>
 						<div class="row">
-							<p>Already have an account? <a href="<?php echo base_url('accounts/signup') ?>">Click here to sign in</a></p>
+							<p class="red"><?php echo $this->session->flashdata('emailinuse'); ?></p>
+							<p>Already have an account? <a href="<?php echo base_url('accounts/login') ?>">Click here to sign in</a></p>
 						</div>
 						<div class="row">
 							<button class="btn blue" type="submit">Sign Up</button>
