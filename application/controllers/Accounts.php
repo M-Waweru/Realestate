@@ -28,14 +28,17 @@ class Accounts extends CI_Controller{
 			//model function
 			$this->load->model('auth_model');
 
-			if ($this->auth_model->login_auth($emailadd, $pwd)){
+			//Signing in by sending details to model
+			$signinvalue = $this->auth_model->login_auth($emailadd, $pwd);
+			if ($signinvalue > 0){
 				$session_data = array(
+					'userno' => $signinvalue,
 					'emailadd' => $emailadd,
 				);
 				$this->session->set_userdata($session_data);
 				redirect(base_url());
 			} else {
-				$this->session->set_flashdata('error', "Invalid Email address or Password");
+				$this->session->set_flashdata('invalidcred', "Invalid Email address or Password");
 				$this->login();
 			}
 		}	
@@ -50,19 +53,36 @@ class Accounts extends CI_Controller{
 		$this->form_validation->set_rules('pwd', 'Password', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('signuppage');
+
 		} else {
 			$fullname = $this->input->post('fullname');
 			$emailadd = $this->input->post('emailadd');
 			$pwd = $this->input->post('pwd');
+			$pwdagain = $this->input->post('pwdagain');
+
+			if (strlen($pwd)<8){
+				$this->session->set_flashdata('passlength', "Password must have 8 characters or more");
+				redirect(base_url('accounts/signup'));
+			} else if ($pwd!=$pwdagain){
+				$this->session->set_flashdata('passconfirm', "Passwords are not the same");
+				redirect(base_url('accounts/signup'));
+			}
 
 			$this->load->model('auth_model');
 
-			if ($this->auth_model->signup_auth($fullname, $emailadd, $pwd)){
-				// redirect(base_url());
+			//Sending details to model
+			$signupvalue = $this->auth_model->signup_auth($fullname, $emailadd, $pwd);
+
+			if ($signupvalue>0){
+				$session_data = array(
+					'userno' => $signupvalue,
+					'emailadd' => $emailadd,
+				);
+				$this->session->set_userdata($session_data);
+				redirect(base_url());
 			} else {
 				$this->session->set_flashdata('emailinuse', "Email address is already in use");
-				$this->signup();
+				redirect(base_url('accounts/signup'));
 			}
 		}
 	}
@@ -79,6 +99,17 @@ class Accounts extends CI_Controller{
 
 		$name = $this->input->get('name');
 		$emailadd = $this->input->get('emailadd'); 
+	}
+
+	public function logout(){
+		$this->session->unset_userdata('emailadd');
+		redirect(base_url());
+	}
+
+	public function manageacc(){
+		$this->load->view('navbar');
+		$this->load->view('accountpage');
+		$this->load->view('footer');
 	}
 }
 

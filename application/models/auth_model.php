@@ -9,12 +9,13 @@ class Auth_model extends CI_Model {
 		
 		if ($query->num_rows() > 0){
 			if (password_verify($pwd, $userarray[0]['Password'])){
-				return true;
+				$userno = $userarray[0]['User_no'];
+				return $userno;
 			} else {
-				return false;
+				return 0;
 			}
 		} else {
-			return false;
+			return 0;
 		}
 	}
 
@@ -24,7 +25,7 @@ class Auth_model extends CI_Model {
 		$query = $this->db->get_where('users', array('Email_address'=>$email));
 
 		if ($query->num_rows() > 0){
-			return false;
+			return 0;
 		} else {
 			$data = array(
 				'Full_name' => $fullname,
@@ -34,10 +35,10 @@ class Auth_model extends CI_Model {
 
 			$this->db->insert('users', $data);
 
-			$query = $this->db->get_where('users', array('Email_address'=> $emailadd));
+			$query = $this->db->get_where('users', array('Email_address'=> $email));
 			$userarray = $query -> result_array();
-			print_r($userarray);
-			echo "Account created";
+			$userno = $userarray[0]['User_no'];
+			return $userno;
 		}
 	}
 }

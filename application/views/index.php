@@ -3,19 +3,19 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="description" content="">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<!-- Title -->
-	<title>RealEstate</title>
+	<title>Cathbri RealEstate</title>
 
 	<!-- Favicon -->
 	<link rel="icon" href="<?php echo base_url() ?>img/core-img/favicon.ico">
 
 	<!-- Core Stylesheet -->
 	<link href="<?php echo base_url() ?>css/style.css" rel="stylesheet">
+	<!-- <link href="<?php echo base_url() ?>css/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
 
 	<!-- Responsive CSS -->
 	<link href="<?php echo base_url() ?>css/responsive/responsive.css" rel="stylesheet">
@@ -24,9 +24,9 @@
 
 <body>
 	<!-- Preloader -->
-	<div id="preloader">
+<!-- 	<div id="preloader">
 		<div class="dorne-load"></div>
-	</div>
+	</div> -->
 
 	<!-- ***** Search Form Area ***** -->
 	<div class="dorne-search-form d-flex align-items-center">
@@ -36,7 +36,7 @@
 					<div class="search-close-btn" id="closeBtn">
 						<i class="pe-7s-close-circle" aria-hidden="true"></i>
 					</div>
-					<form action="#" method="get">
+					<form action="<?php echo base_url('search') ?>" method="get">
 						<input type="search" name="caviarSearch" id="search" placeholder="Search Your Desire Destinations or Events">
 						<input type="submit" class="d-none" value="submit">
 					</form>
@@ -51,7 +51,7 @@
 			<div class="row h-100">
 				<div class="col-12 h-100">
 					<nav class="h-100 navbar navbar-expand-lg">
-						<a class="navbar-brand" href="index.html">RealEstate</a>
+						<a class="navbar-brand" href="<?php echo base_url() ?>">Cathbri RealEstate</a>
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
 						<!-- Nav -->
 						<div class="collapse navbar-collapse" id="dorneNav">
@@ -62,25 +62,22 @@
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<a class="dropdown-item" href="index.html">Home</a>
-										<a class="dropdown-item" href="explore.html">Explore</a>
-										<a class="dropdown-item" href="listing.html">Listing</a>
-										<a class="dropdown-item" href="single-listing.html">Single Listing</a>
-										<a class="dropdown-item" href="contact.html">Contact</a>
+										<a class="dropdown-item" href="<?php echo base_url('listing/typelisting?type=sale') ?>">For Sale</a>
+										<a class="dropdown-item" href="<?php echo base_url('listing/typelisting?type=rent') ?>">For Rent</a>
+										<a class="dropdown-item" href="<?php echo base_url('listing/typelisting?type=new') ?>">New Developments</a>
 									</div>
 								</li>
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-										<a class="dropdown-item" href="index.html">Home</a>
-										<a class="dropdown-item" href="explore.html">Explore</a>
-										<a class="dropdown-item" href="listing.html">Listing</a>
-										<a class="dropdown-item" href="single-listing.html">Single Listing</a>
-										<a class="dropdown-item" href="contact.html">Contact</a>
+										<a class="dropdown-item" href="<?php echo base_url('listing/categorylisting?category=flats') ?>">Flats and apartments</a>
+										<a class="dropdown-item" href="<?php echo base_url('listing/categorylisting?category=houses') ?>">Houses</a>
+										<a class="dropdown-item" href="<?php echo base_url('listing/categorylisting?category=commercial') ?>">Commercial</a>
+										<a class="dropdown-item" href="<?php echo base_url('listing/categorylisting?category=land') ?>">Land</a>
 									</div>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="contact.html">Contact</a>
+									<a class="nav-link" href="<?php echo base_url('welcome/contactus') ?>">Contact</a>
 								</li>
 							</ul>
 							<!-- Search btn -->
@@ -91,10 +88,10 @@
 							<?php 
 							if ($this->session->userdata('emailadd')!=''){
 								echo "<div class='dorne-signin-btn'>";
-								echo "<a href=''>Account<a>";
+								echo "<a href='".base_url('accounts/manageacc')."'>Account<a>";
 								echo "</div>";
 								echo "<div class='dorne-signin-btn'>";
-								echo "<a href=''>Logout<a>";
+								echo "<a href='".base_url('accounts/logout')."'>Logout<a>";
 								echo "</div>";
 							} else {
 								echo "<div class='dorne-signin-btn'>";
@@ -104,7 +101,7 @@
 							?>
 							<!-- Add listings btn -->
 							<div class="dorne-add-listings-btn">
-								<a href="#" class="btn dorne-btn">+ Add Listings</a>
+								<a href="<?php echo base_url('listing/stepone') ?>" class="btn dorne-btn">+ Add Listings</a>
 							</div>
 						</div>
 					</nav>
@@ -115,7 +112,7 @@
 	<!-- ***** Header Area End ***** -->
 
 	<!-- ***** Welcome Area Start ***** -->
-	<section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url(<?php echo base_url() ?>img/bg-img/hero-1.jpg);">
+	<section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url(<?php echo base_url() ?>img/homepage-img/nairobiorangesky.jpg);">
 		<div class="container h-100">
 			<div class="row h-100 align-items-center justify-content-center">
 				<div class="col-12 col-md-10">
@@ -127,16 +124,16 @@
 					<div class="hero-search-form">
 						<!-- Tabs -->
 						<div class="nav nav-tabs" id="heroTab" role="tablist">
-							<a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab" aria-controls="nav-places" aria-selected="true">Places</a>
-							<a class="nav-item nav-link" id="nav-events-tab" data-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="false">Events</a>
+							<a class="nav-item nav-link active" id="navforsale-tab" data-toggle="tab" href="#navforsale" role="tab" aria-controls="navforsale" aria-selected="true">For Sale</a>
+							<a class="nav-item nav-link" id="nav-events-tab" data-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="false">For Rent</a>
 						</div>
 						<!-- Tabs Content -->
 						<div class="tab-content" id="nav-tabContent">
-							<div class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
+							<div class="tab-pane fade show active" id="navforsale" role="tabpanel" aria-labelledby="navforsale-tab">
 								<h6>What are you looking for?</h6>
-								<form action="#" method="get">
+								<form action="<?php echo base_url('search') ?>" method="get">
 									<select class="custom-select">
-										<option selected>Your Destinations</option>
+										<option selected>Locations</option>
 										<option value="1">New York</option>
 										<option value="2">Latvia</option>
 										<option value="3">Dhaka</option>
@@ -145,9 +142,10 @@
 									</select>
 									<select class="custom-select">
 										<option selected>All Catagories</option>
-										<option value="1">Catagories 1</option>
-										<option value="2">Catagories 2</option>
-										<option value="3">Catagories 3</option>
+										<option value="1">Flats and apartments</option>
+										<option value="2">Houses</option>
+										<option value="3">Commercial</option>
+										<option value="4">Land</option>
 									</select>
 									<select class="custom-select">
 										<option selected>Price Range</option>
@@ -160,9 +158,9 @@
 							</div>
 							<div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
 								<h6>What are you looking for?</h6>
-								<form action="#" method="get">
+								<form action="<?php echo base_url('search') ?>" method="get">
 									<select class="custom-select">
-										<option selected>Your Destinations</option>
+										<option selected>Locations</option>
 										<option value="1">New York</option>
 										<option value="2">Latvia</option>
 										<option value="3">Dhaka</option>
@@ -171,9 +169,10 @@
 									</select>
 									<select class="custom-select">
 										<option selected>All Catagories</option>
-										<option value="1">Catagories 1</option>
-										<option value="2">Catagories 2</option>
-										<option value="3">Catagories 3</option>
+										<option value="1">Flats and apartments</option>
+										<option value="2">Houses</option>
+										<option value="3">Commercial</option>
+										<option value="4">Land</option>
 									</select>
 									<select class="custom-select">
 										<option selected>Price Range</option>
@@ -196,9 +195,6 @@
 				<span></span>
 			</div>
 			<div class="social-btns">
-				<a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
-				<a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
-				<a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
 				<a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
 				<a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
 			</div>
@@ -207,13 +203,12 @@
 	<!-- ***** Welcome Area End ***** -->
 
 	<!-- ***** Catagory Area Start ***** -->
-	<section class="dorne-catagory-area">
+<!-- 	<section class="dorne-catagory-area">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="all-catagories">
 						<div class="row">
-							<!-- Single Catagory Area -->
 							<div class="col-12 col-sm-6 col-md">
 								<div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.2s">
 									<div class="catagory-content">
@@ -224,7 +219,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- Single Catagory Area -->
 							<div class="col-12 col-sm-6 col-md">
 								<div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.4s">
 									<div class="catagory-content">
@@ -235,7 +229,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- Single Catagory Area -->
 							<div class="col-12 col-sm-6 col-md">
 								<div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.6s">
 									<div class="catagory-content">
@@ -246,7 +239,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- Single Catagory Area -->
 							<div class="col-12 col-sm-6 col-md">
 								<div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.8s">
 									<div class="catagory-content">
@@ -257,7 +249,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- Single Catagory Area -->
 							<div class="col-12 col-md">
 								<div class="single-catagory-area wow fadeInUpBig" data-wow-delay="1s">
 									<div class="catagory-content">
@@ -273,7 +264,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 	<!-- ***** Catagory Area End ***** -->
 
 	<!-- ***** About Area Start ***** -->
@@ -282,7 +273,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="about-content text-center">
-						<h2>Discover your city with <br><span>Dorne</span></h2>
+						<h2>Discover your next home with <br><span>Dorne</span></h2>
 						<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce quis tempus elit. Sed efficitur tortor neque, vitae aliquet urna varius sit amet. Ut rhoncus, nunc nec tincidunt volutpat, ex libero.</p>
 					</div>
 				</div>
@@ -291,173 +282,6 @@
 	</section>
 	<!-- ***** About Area End ***** -->
 
-	<!-- ***** Editor Pick Area Start ***** -->
-	<section class="dorne-editors-pick-area bg-img bg-overlay-9 section-padding-100" style="background-image: url(img/bg-img/hero-2.jpg);">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="section-heading text-center">
-						<span></span>
-						<h4>Cities you must see</h4>
-						<p>Editor’s pick</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-12 col-lg-6">
-					<div class="single-editors-pick-area wow fadeInUp" data-wow-delay="0.2s">
-						<img src="<?php echo site_url() ?>img/bg-img/editor-1.jpg" alt="">
-						<div class="editors-pick-info">
-							<div class="places-total-destinations d-flex">
-								<a href="#">New York</a>
-								<a href="#">1643 Destinations</a>
-							</div>
-							<div class="add-more">
-								<a href="#">+</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-lg-6">
-					<div class="single-editors-pick-area wow fadeInUp" data-wow-delay="0.4s">
-						<img src="<?php echo site_url() ?>img/bg-img/editor-2.jpg" alt="">
-						<div class="editors-pick-info">
-							<div class="places-total-destinations d-flex">
-								<a href="#">Barcelona</a>
-								<a href="#">943 Destinations</a>
-							</div>
-							<div class="add-more">
-								<a href="#">+</a>
-							</div>
-						</div>
-					</div>
-					<div class="single-editors-pick-area wow fadeInUp" data-wow-delay="0.6s">
-						<img src="<?php echo site_url() ?>img/bg-img/editor-3.jpg" alt="">
-						<div class="editors-pick-info">
-							<div class="places-total-destinations d-flex">
-								<a href="#">paris</a>
-								<a href="#">243 Destinations</a>
-							</div>
-							<div class="add-more">
-								<a href="#">+</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- ***** Editor Pick Area End ***** -->
-
-	<!-- ***** Features Destinations Area Start ***** -->
-	<section class="dorne-features-destinations-area">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-12">
-					<div class="section-heading dark text-center">
-						<span></span>
-						<h4>Featured destinations</h4>
-						<p>Editor’s pick</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-12">
-					<div class="features-slides owl-carousel">
-						<!-- Single Features Area -->
-						<div class="single-features-area">
-							<img src="<?php echo site_url() ?>img/bg-img/feature-1.jpg" alt="">
-							<!-- Price -->
-							<div class="price-start">
-								<p>FROM $59/night</p>
-							</div>
-							<div class="feature-content d-flex align-items-center justify-content-between">
-								<div class="feature-title">
-									<h5>Ibiza</h5>
-									<p>Party</p>
-								</div>
-								<div class="feature-favourite">
-									<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Features Area -->
-						<div class="single-features-area">
-							<img src="<?php echo site_url() ?>img/bg-img/feature-2.jpg" alt="">
-							<!-- Price -->
-							<div class="price-start">
-								<p>FROM $59/night</p>
-							</div>
-							<div class="feature-content d-flex align-items-center justify-content-between">
-								<div class="feature-title">
-									<h5>Paris</h5>
-									<p>Luxury</p>
-								</div>
-								<div class="feature-favourite">
-									<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Features Area -->
-						<div class="single-features-area">
-							<img src="<?php echo site_url() ?>img/bg-img/feature-3.jpg" alt="">
-							<!-- Price -->
-							<div class="price-start">
-								<p>FROM $59/night</p>
-							</div>
-							<div class="feature-content d-flex align-items-center justify-content-between">
-								<div class="feature-title">
-									<h5>Lake Como</h5>
-									<p>Spectacular</p>
-								</div>
-								<div class="feature-favourite">
-									<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Features Area -->
-						<div class="single-features-area">
-							<img src="<?php echo site_url() ?>img/bg-img/feature-4.jpg" alt="">
-							<!-- Price -->
-							<div class="price-start">
-								<p>FROM $59/night</p>
-							</div>
-							<div class="feature-content d-flex align-items-center justify-content-between">
-								<div class="feature-title">
-									<h5>Greece</h5>
-									<p>Sunny</p>
-								</div>
-								<div class="feature-favourite">
-									<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Single Features Area -->
-						<div class="single-features-area">
-							<img src="<?php echo site_url() ?>img/bg-img/feature-5.jpg" alt="">
-							<!-- Price -->
-							<div class="price-start">
-								<p>FROM $59/night</p>
-							</div>
-							<div class="feature-content d-flex align-items-center justify-content-between">
-								<div class="feature-title">
-									<h5>Norway</h5>
-									<p>All Year round</p>
-								</div>
-								<div class="feature-favourite">
-									<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- ***** Features Destinations Area End ***** -->
-
 	<!-- ***** Features Restaurant Area Start ***** -->
 	<section class="dorne-features-restaurant-area bg-default">
 		<div class="container-fluid">
@@ -465,8 +289,8 @@
 				<div class="col-12">
 					<div class="section-heading text-center">
 						<span></span>
-						<h4>Featured Restaurants</h4>
-						<p>Editor’s pick</p>
+						<h4>Featured Homes</h4>
+						<p>Swipe Left or Right</p>
 					</div>
 				</div>
 			</div>
@@ -474,6 +298,24 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="features-slides owl-carousel">
+						<!-- Single Features Area -->
+						<div class="single-features-area">
+							<img src="<?php echo site_url() ?>img/bg-img/feature-6.jpg" alt="">
+							<!-- Rating & Map Area -->
+							<div class="ratings-map-area d-flex">
+								<a href="#">8.5</a>
+								<a href="#"><img src="<?php echo site_url() ?>img/core-img/map.png" alt=""></a>
+							</div>
+							<div class="feature-content d-flex align-items-center justify-content-between">
+								<div class="feature-title">
+									<h5>Martha’s bar</h5>
+									<p>Manhathan</p>
+								</div>
+								<div class="feature-favourite">
+									<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
 						<!-- Single Features Area -->
 						<div class="single-features-area">
 							<img src="<?php echo site_url() ?>img/bg-img/feature-6.jpg" alt="">
@@ -571,141 +413,8 @@
 	</section>
 	<!-- ***** Features Restaurant Area End ***** -->
 
-	<!-- ***** Features Events Area Start ***** -->
-	<section class="dorne-features-events-area bg-img bg-overlay-9 section-padding-100-50" style="background-image: url(<?php echo base_url() ?>img/bg-img/hero-3.jpg)">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="section-heading text-center">
-						<span></span>
-						<h4>Featured events</h4>
-						<p>Editor’s pick</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-12 col-lg-6">
-					<div class="single-feature-events-area d-sm-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
-						<div class="feature-events-thumb">
-							<img src="<?php echo base_url() ?>img/bg-img/event-1.jpg" alt="">
-							<div class="date-map-area d-flex">
-								<a href="#">26 Nov</a>
-								<a href="#"><img src="<?php echo base_url() ?>img/core-img/map.png" alt=""></a>
-							</div>
-						</div>
-						<div class="feature-events-content">
-							<h5>Jazz Concert</h5>
-							<h6>Manhathan</h6>
-							<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra...</p>
-						</div>
-						<div class="feature-events-details-btn">
-							<a href="#">+</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-lg-6">
-					<div class="single-feature-events-area d-sm-flex align-items-center wow fadeInUpBig" data-wow-delay="0.3s">
-						<div class="feature-events-thumb">
-							<img src="<?php echo base_url() ?>img/bg-img/event-2.jpg" alt="">
-							<div class="date-map-area d-flex">
-								<a href="#">26 Nov</a>
-								<a href="#"><img src="<?php echo base_url() ?>img/core-img/map.png" alt=""></a>
-							</div>
-						</div>
-						<div class="feature-events-content">
-							<h5>DeeJay in the house</h5>
-							<h6>Manhathan</h6>
-							<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra...</p>
-						</div>
-						<div class="feature-events-details-btn">
-							<a href="#">+</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-lg-6">
-					<div class="single-feature-events-area d-sm-flex align-items-center wow fadeInUpBig" data-wow-delay="0.4s">
-						<div class="feature-events-thumb">
-							<img src="<?php echo base_url() ?>img/bg-img/event-3.jpg" alt="">
-							<div class="date-map-area d-flex">
-								<a href="#">26 Nov</a>
-								<a href="#"><img src="<?php echo base_url() ?>img/core-img/map.png" alt=""></a>
-							</div>
-						</div>
-						<div class="feature-events-content">
-							<h5>Theatre Night outside</h5>
-							<h6>Manhathan</h6>
-							<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra...</p>
-						</div>
-						<div class="feature-events-details-btn">
-							<a href="#">+</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-lg-6">
-					<div class="single-feature-events-area d-sm-flex align-items-center wow fadeInUpBig" data-wow-delay="0.5s">
-						<div class="feature-events-thumb">
-							<img src="<?php echo base_url() ?>img/bg-img/event-4.jpg" alt="">
-							<div class="date-map-area d-flex">
-								<a href="#">26 Nov</a>
-								<a href="#"><img src="<?php echo base_url() ?>img/core-img/map.png" alt=""></a>
-							</div>
-						</div>
-						<div class="feature-events-content">
-							<h5>Wine tasting</h5>
-							<h6>Manhathan</h6>
-							<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra...</p>
-						</div>
-						<div class="feature-events-details-btn">
-							<a href="#">+</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-lg-6">
-					<div class="single-feature-events-area d-sm-flex align-items-center wow fadeInUpBig" data-wow-delay="0.6s">
-						<div class="feature-events-thumb">
-							<img src="<?php echo base_url() ?>img/bg-img/event-5.jpg" alt="">
-							<div class="date-map-area d-flex">
-								<a href="#">26 Nov</a>
-								<a href="#"><img src="<?php echo base_url() ?>img/core-img/map.png" alt=""></a>
-							</div>
-						</div>
-						<div class="feature-events-content">
-							<h5>New Moon Party</h5>
-							<h6>Manhathan</h6>
-							<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra...</p>
-						</div>
-						<div class="feature-events-details-btn">
-							<a href="#">+</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-lg-6">
-					<div class="single-feature-events-area d-sm-flex align-items-center wow fadeInUpBig" data-wow-delay="0.7s">
-						<div class="feature-events-thumb">
-							<img src="<?php echo base_url() ?>img/bg-img/event-6.jpg" alt="">
-							<div class="date-map-area d-flex">
-								<a href="#">26 Nov</a>
-								<a href="#"><img src="<?php echo base_url() ?>img/core-img/map.png" alt=""></a>
-							</div>
-						</div>
-						<div class="feature-events-content">
-							<h5>Happy hour at pub</h5>
-							<h6>Manhathan</h6>
-							<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra...</p>
-						</div>
-						<div class="feature-events-details-btn">
-							<a href="#">+</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- ***** Features Events Area End ***** -->
-
 	<!-- ***** Clients Area Start ***** -->
-	<div class="dorne-clients-area section-padding-100">
+<!-- 	<div class="dorne-clients-area section-padding-100">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
@@ -719,7 +428,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- ***** Clients Area End ***** -->
 
 	<!-- ****** Footer Area Start ****** -->
@@ -730,14 +439,11 @@
 					<div class="footer-text">
 						<p>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</p>
 					</div>
 					<div class="footer-social-btns">
-						<a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
-						<a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
 						<a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
 						<a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
 					</div>
